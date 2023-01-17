@@ -17,7 +17,7 @@ Xin chào các bạn,
 
 ## Cài đặt
 
-Để cài đặt BookStore-Microservice, bạn cần có [Node.js](https://nodejs.org/en/) và [npm](https://www.npmjs.com/) đã được cài đặt trên máy tính. Sau đó, bạn có thể chạy các lệnh sau để cài đặt BookStore-Microservice:
+Để cài đặt BookStore-Microservice, bạn cần có [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/) và [Redis](https://redis.io/) cách để cài [Redis](https://redis.io/docs/getting-started/installation/install-redis-on-windows/) đã được cài đặt trên máy tính. Sau đó, bạn có thể chạy các lệnh sau để cài đặt BookStore-Microservice:
 
 ```bash
 git clone https://github.com/Toan-Errors/book-store-microservice.git
