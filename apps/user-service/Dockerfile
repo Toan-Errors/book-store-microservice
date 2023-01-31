@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build book-service
+RUN npm run build user-service
 
 FROM node:alpine as production
 
@@ -23,6 +23,6 @@ RUN npm install --only=production
 
 COPY . .
 
-COPY --from=development /usr/src/book-service/dist ./dist
+COPY --from=development /usr/src/user-service/dist ./dist
 
-CMD ["node", "dist/apps/book-service/main"]
+CMD ["node", "dist/apps/user-service/main"]

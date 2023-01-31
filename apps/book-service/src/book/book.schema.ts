@@ -11,12 +11,6 @@ import {
 export class Book {
   @Prop({
     required: true,
-    unique: true,
-  })
-  isbn: string; //unique identifier of the book
-
-  @Prop({
-    required: true,
   })
   title: string; //title of the book
 

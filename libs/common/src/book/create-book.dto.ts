@@ -10,10 +10,6 @@ import {
 export class CreateBookDto {
   @IsString()
   @IsNotEmpty()
-  readonly isbn: string;
-
-  @IsString()
-  @IsNotEmpty()
   readonly title: string;
 
   @IsString()

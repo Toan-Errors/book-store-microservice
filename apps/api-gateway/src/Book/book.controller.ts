@@ -1,4 +1,4 @@
-import { CreateBookDto } from '@app/common';
+import { CreateBookDto, REDIS_OPTIONS } from '@app/common';
 import {
   Controller,
   Post,
@@ -12,7 +12,7 @@ import { Client, ClientProxy, Transport } from '@nestjs/microservices';
 
 @Controller('books')
 export class BooksController {
-  @Client({ transport: Transport.REDIS })
+  @Client({ transport: Transport.REDIS, options: REDIS_OPTIONS })
   client: ClientProxy;
 
   @Post()
