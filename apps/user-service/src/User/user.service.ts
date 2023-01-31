@@ -46,4 +46,13 @@ export class UserService {
     const payload = { _id: user._id };
     return this.jwtService.sign(payload);
   }
+
+  async verifyAccessToken(token: string): Promise<User | undefined> {
+    try {
+      const { _id } = this.jwtService.verify(token);
+      return this.userModel.findById(_id);
+    } catch (error) {
+      return undefined;
+    }
+  }
 }

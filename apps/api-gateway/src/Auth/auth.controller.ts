@@ -4,14 +4,14 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  Inject,
 } from '@nestjs/common';
-import { Client, ClientProxy, Transport } from '@nestjs/microservices';
-import { CreateUserDto, LoginUserDto } from '@app/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { CreateUserDto, LoginUserDto, USER_SERVICE } from '@app/common';
 
 @Controller('auth')
 export class AuthController {
-  @Client({ transport: Transport.REDIS })
-  client: ClientProxy;
+  constructor(@Inject(USER_SERVICE) readonly client: ClientProxy) {}
 
   @Post('register')
   async register(@Body() registerUserDto: CreateUserDto) {
@@ -33,7 +33,19 @@ export class AuthController {
         .toPromise();
       return response;
     } catch (error) {
-      console.log(error);
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post('authenticate')
+  async authenticate(@Body() token: { accessToken: string }) {
+    const { accessToken } = token;
+    try {
+      const response = await this.client
+        .send({ cmd: 'authenticate' }, accessToken)
+        .toPromise();
+      return response;
+    } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }

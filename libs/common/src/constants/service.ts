@@ -9,3 +9,7 @@ export const REDIS_OPTIONS = {
   port: 6379,
   password: 'eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81',
 };
+
+// export const REDIS_OPTIONS = {
+//   url: 'redis://redis:6379',
+// };

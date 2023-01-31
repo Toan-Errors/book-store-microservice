@@ -19,8 +19,9 @@ export class UserController {
       this.logger.log(`Successfully registered user ${user.email}`);
       return user;
     } catch (error) {
-      this.logger.error(`Failed to register user: ${error.message}`);
-      throw error;
+      return {
+        messages: error.message,
+      };
     }
   }
 
@@ -30,22 +31,46 @@ export class UserController {
     try {
       const user = await this.userService.findByEmail(loginUserDto.email);
       if (!user) {
-        throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+        return {
+          message: 'Email is not registered',
+        };
       }
       const isMatch = await this.userService.comparePassword(
         loginUserDto.password,
         user.password,
       );
       if (!isMatch) {
-        throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+        return {
+          message: 'Password is incorrect',
+        };
       }
       const accessToken = await this.userService.generateAccessToken(user);
       const refreshToken = await this.userService.generateRefreshToken(user);
       this.logger.log(`Successfully logged in user ${user.email}`);
-      return { accessToken, refreshToken };
+      return { accessToken, refreshToken, user };
     } catch (error) {
-      this.logger.error(`Failed to login user: ${error.message}`);
-      throw error;
+      return {
+        message: 'Email or password is incorrect',
+      };
+    }
+  }
+
+  @MessagePattern({ cmd: 'authenticate' })
+  async authenticate(token: string) {
+    this.logger.log(`Received authentication request for token ${token}`);
+    try {
+      const user = await this.userService.verifyAccessToken(token);
+      if (!user) {
+        return {
+          message: 'Invalid token',
+        };
+      }
+      this.logger.log(`Successfully authenticated user ${user.email}`);
+      return { user };
+    } catch (error) {
+      return {
+        message: error.message,
+      };
     }
   }
 }

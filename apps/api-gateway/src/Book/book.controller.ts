@@ -1,4 +1,4 @@
-import { CreateBookDto, REDIS_OPTIONS } from '@app/common';
+import { BOOK_SERVICE, CreateBookDto } from '@app/common';
 import {
   Controller,
   Post,
@@ -7,13 +7,13 @@ import {
   Param,
   Put,
   Delete,
+  Inject,
 } from '@nestjs/common';
-import { Client, ClientProxy, Transport } from '@nestjs/microservices';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('books')
 export class BooksController {
-  @Client({ transport: Transport.REDIS, options: REDIS_OPTIONS })
-  client: ClientProxy;
+  constructor(@Inject(BOOK_SERVICE) readonly client: ClientProxy) {}
 
   @Post()
   async create(@Body() createBookDto: CreateBookDto) {
