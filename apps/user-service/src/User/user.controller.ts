@@ -4,6 +4,7 @@ import { HttpException } from '@nestjs/common/exceptions';
 import { HttpStatus } from '@nestjs/common/enums';
 import { CreateUserDto, LoginUserDto } from '@app/common';
 import { MessagePattern } from '@nestjs/microservices';
+import { Response } from 'express';
 
 @Controller()
 export class UserController {
@@ -44,6 +45,10 @@ export class UserController {
           message: 'Password is incorrect',
         };
       }
+
+      const expires = new Date();
+      expires.setSeconds(expires.getSeconds() + 3600);
+
       const accessToken = await this.userService.generateAccessToken(user);
       const refreshToken = await this.userService.generateRefreshToken(user);
       this.logger.log(`Successfully logged in user ${user.email}`);

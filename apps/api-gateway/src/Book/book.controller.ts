@@ -1,27 +1,9 @@
-import { BOOK_SERVICE, CreateBookDto } from '@app/common';
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Param,
-  Put,
-  Delete,
-  Inject,
-} from '@nestjs/common';
+import { BOOK_SERVICE } from '@app/common';
+import { Controller, Get, Param, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-
 @Controller('books')
 export class BooksController {
   constructor(@Inject(BOOK_SERVICE) readonly client: ClientProxy) {}
-
-  @Post()
-  async create(@Body() createBookDto: CreateBookDto) {
-    const book = await this.client
-      .send({ cmd: 'createBook' }, createBookDto)
-      .toPromise();
-    return book;
-  }
 
   @Get()
   async findAll() {
@@ -34,20 +16,6 @@ export class BooksController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const book = await this.client.send({ cmd: 'findOneBook' }, id).toPromise();
-    return book;
-  }
-
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() updateBookDto: CreateBookDto) {
-    const book = await this.client
-      .send({ cmd: 'updateBook' }, { id, updateBookDto })
-      .toPromise();
-    return book;
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    const book = await this.client.send({ cmd: 'removeBook' }, id).toPromise();
     return book;
   }
 }

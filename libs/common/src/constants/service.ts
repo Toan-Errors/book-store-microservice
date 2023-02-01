@@ -10,6 +10,9 @@ export const REDIS_OPTIONS = {
   password: 'eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81',
 };
 
+export const MONGODB_URI =
+  'mongodb+srv://toanerror:5sonline@cluster1.vquj40v.mongodb.net/bookstore';
+
 // export const REDIS_OPTIONS = {
 //   url: 'redis://redis:6379',
 // };
