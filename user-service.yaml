@@ -1,0 +1,12 @@
+services:
+  user-service:
+    build:
+      context: .
+      dockerfile: ./apps/user-service/Dockerfile
+      target: development
+    command: npm run start:dev user-service
+    env_file:
+      - ./apps/user-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
