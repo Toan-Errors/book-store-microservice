@@ -12,4 +12,5 @@ export class ListAllEntitiesDto {
   readonly pages: number;
   readonly coverImage: string;
   readonly language: string;
+  readonly createdAt: Date;
 }

@@ -5,6 +5,8 @@ import {
   HttpException,
   HttpStatus,
   Inject,
+  Request,
+  Get,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CreateUserDto, LoginUserDto, USER_SERVICE } from '@app/common';
@@ -37,9 +39,9 @@ export class AuthController {
     }
   }
 
-  @Post('authenticate')
-  async authenticate(@Body() token: { accessToken: string }) {
-    const { accessToken } = token;
+  @Get('authenticate')
+  async authenticate(@Request() req: any) {
+    const accessToken = req.headers.authorization.split(' ')[1];
     try {
       const response = await this.client
         .send({ cmd: 'authenticate' }, accessToken)

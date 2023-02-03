@@ -13,7 +13,7 @@ export class BookService {
 
   async findAll(): Promise<ListAllEntitiesDto[]> {
     const books = await this.bookModel.find();
-    return books.map((book) => ({
+    return books.map((book: any) => ({
       _id: book._id,
       title: book.title,
       subtitle: book.subtitle,
@@ -27,6 +27,7 @@ export class BookService {
       pages: book.pages,
       coverImage: book.coverImage,
       language: book.language,
+      createdAt: book.createdAt,
     }));
   }
 
