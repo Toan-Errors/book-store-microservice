@@ -17,15 +17,18 @@ export class BookService {
       _id: book._id,
       title: book.title,
       subtitle: book.subtitle,
+      description: book.description,
       author: book.author,
       country: book.country,
       ageGroup: book.ageGroup,
       saleDate: book.saleDate,
       price: book.price,
+      price_sale: book.price_sale,
       publisher: book.publisher,
       genres: book.genres,
       pages: book.pages,
       coverImage: book.coverImage,
+      images: book.images,
       language: book.language,
       createdAt: book.createdAt,
     }));
@@ -40,7 +43,7 @@ export class BookService {
     return this.bookModel.findByIdAndUpdate(id, book, { new: true });
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: string): Promise<any> {
     return this.bookModel.findByIdAndRemove(id);
   }
 }

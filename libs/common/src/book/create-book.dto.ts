@@ -56,6 +56,10 @@ export class CreateBookDto {
   @IsOptional()
   readonly coverImage: string;
 
+  @IsArray()
+  @IsOptional()
+  readonly images: string[];
+
   @IsString()
   @IsOptional()
   readonly description: string;

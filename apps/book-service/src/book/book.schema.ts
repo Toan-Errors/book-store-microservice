@@ -52,6 +52,9 @@ export class Book {
   coverImage: string; //URL of the book's cover image
 
   @Prop()
+  images: [string]; //URLs of the book's images
+
+  @Prop()
   description: string; //brief summary of the book's plot or content
 
   @Prop()

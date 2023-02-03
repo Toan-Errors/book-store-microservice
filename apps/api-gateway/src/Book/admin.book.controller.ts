@@ -30,17 +30,19 @@ export class AdminBooksController {
 
   @Put(':id')
   @Roles(Role.ADMIN)
-  async update(@Param('id') id: string, @Body() updateBookDto: CreateBookDto) {
-    const book = await this.client
-      .send({ cmd: 'updateBook' }, { id, updateBookDto })
+  async update(@Param('id') id: string, @Body() book: CreateBookDto) {
+    const response = await this.client
+      .send({ cmd: 'updateBook' }, { id, book })
       .toPromise();
-    return book;
+    return response;
   }
 
   @Delete(':id')
   @Roles(Role.ADMIN)
   async remove(@Param('id') id: string) {
-    const book = await this.client.send({ cmd: 'removeBook' }, id).toPromise();
+    const book = await this.client
+      .send({ cmd: 'removeBook' }, { id })
+      .toPromise();
     return book;
   }
 }

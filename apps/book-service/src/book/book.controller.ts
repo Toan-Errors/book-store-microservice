@@ -30,8 +30,8 @@ export class BookController {
     return this.bookService.update(data.id, data.book);
   }
 
-  @MessagePattern({ cmd: 'deleteBook' })
-  async deleteBook(data: { id: string }): Promise<void> {
+  @MessagePattern({ cmd: 'removeBook' })
+  async deleteBook(data: { id: string }): Promise<any> {
     this.logger.log(`Received delete book command for ${data.id}`);
     return this.bookService.delete(data.id);
   }
