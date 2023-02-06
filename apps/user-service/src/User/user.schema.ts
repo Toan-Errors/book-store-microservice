@@ -40,24 +40,9 @@ export class User {
   })
   phone: string;
 
-  @Prop({
-    required: true,
-  })
   address: string;
-
-  @Prop({
-    required: true,
-  })
   city: string;
-
-  @Prop({
-    required: true,
-  })
   zipCode: string;
-
-  @Prop({
-    required: true,
-  })
   country: string;
 }
 

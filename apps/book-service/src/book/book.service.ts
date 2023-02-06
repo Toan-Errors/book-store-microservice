@@ -34,6 +34,10 @@ export class BookService {
     }));
   }
 
+  async findById(id: string): Promise<Book> {
+    return this.bookModel.findById(id);
+  }
+
   async create(book: CreateBookDto): Promise<Book> {
     const createdBook = new this.bookModel(book);
     return createdBook.save();

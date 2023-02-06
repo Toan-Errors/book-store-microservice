@@ -41,6 +41,9 @@ export class AuthController {
 
   @Get('authenticate')
   async authenticate(@Request() req: any) {
+    if (!req.headers.authorization) {
+      return { message: 'No authorization header' };
+    }
     const accessToken = req.headers.authorization.split(' ')[1];
     try {
       const response = await this.client
@@ -48,7 +51,7 @@ export class AuthController {
         .toPromise();
       return response;
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      return { message: error.message };
     }
   }
 }

@@ -15,6 +15,12 @@ export class BookController {
     return this.bookService.findAll();
   }
 
+  @MessagePattern({ cmd: 'findBookById' })
+  async findBookById(data: { id: string }) {
+    this.logger.log(`Received find book by id command for ${data.id}`);
+    return this.bookService.findById(data.id);
+  }
+
   @MessagePattern({ cmd: 'createBook' })
   async createBook(data: CreateBookDto) {
     this.logger.log(`Received create book command for ${data.title}`);

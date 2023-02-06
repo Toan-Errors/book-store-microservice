@@ -15,7 +15,9 @@ export class BooksController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    const book = await this.client.send({ cmd: 'findOneBook' }, id).toPromise();
+    const book = await this.client
+      .send({ cmd: 'findBookById' }, { id })
+      .toPromise();
     return book;
   }
 }

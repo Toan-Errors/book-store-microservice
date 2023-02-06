@@ -25,18 +25,14 @@ export class CreateUserDto {
   readonly phone: string;
 
   @IsString()
-  @IsNotEmpty()
   readonly address: string;
 
   @IsString()
-  @IsNotEmpty()
   readonly city: string;
 
   @IsString()
-  @IsNotEmpty()
   readonly zipCode: string;
 
   @IsString()
-  @IsNotEmpty()
   readonly country: string;
 }
