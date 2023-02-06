@@ -18,7 +18,13 @@ export class UserController {
     try {
       const user = await this.userService.create(createUserDto);
       this.logger.log(`Successfully registered user ${user.email}`);
-      return user;
+      const expires = new Date();
+      expires.setSeconds(expires.getSeconds() + 3600);
+
+      const accessToken = await this.userService.generateAccessToken(user);
+      const refreshToken = await this.userService.generateRefreshToken(user);
+
+      return { accessToken, refreshToken, user };
     } catch (error) {
       return {
         messages: error.message,
