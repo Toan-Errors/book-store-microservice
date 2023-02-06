@@ -4,6 +4,7 @@
 .yarn
 .yarnrc
 .yarnrc.yml
+.pnp.*
 
 # Logs
 logs
