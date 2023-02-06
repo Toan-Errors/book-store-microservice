@@ -1,4 +1,15 @@
 services:
+  book-service:
+    build:
+      context: .
+      dockerfile: ./apps/book-service/Dockerfile
+      target: development
+    command: npm run start:dev book-service
+    env_file:
+      - ./apps/book-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
   user-service:
     build:
       context: .
