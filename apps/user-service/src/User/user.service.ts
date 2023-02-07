@@ -30,6 +30,13 @@ export class UserService {
     return this.userModel.findOne({ email });
   }
 
+  async changeAvatar(
+    userId: string,
+    avatar: string,
+  ): Promise<User | undefined> {
+    return this.userModel.findByIdAndUpdate(userId, { avatar }, { new: true });
+  }
+
   async comparePassword(
     password: string,
     hashedPassword: string,

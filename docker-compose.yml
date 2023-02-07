@@ -10,3 +10,27 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+  book-service:
+    build:
+      context: .
+      dockerfile: ./apps/book-service/Dockerfile
+      target: development
+    command: npm run start:dev book-service
+    env_file:
+      - ./apps/book-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+      target: development
+    command: npm run start:dev api-gateway
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./apps/api-gateway/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules

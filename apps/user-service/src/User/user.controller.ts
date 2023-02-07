@@ -1,10 +1,7 @@
 import { Controller, Logger } from '@nestjs/common';
 import { UserService } from './user.service';
-import { HttpException } from '@nestjs/common/exceptions';
-import { HttpStatus } from '@nestjs/common/enums';
 import { CreateUserDto, LoginUserDto } from '@app/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { Response } from 'express';
 
 @Controller()
 export class UserController {
@@ -27,7 +24,7 @@ export class UserController {
       return { accessToken, refreshToken, user };
     } catch (error) {
       return {
-        messages: error.message,
+        message: error.message,
       };
     }
   }
@@ -83,5 +80,11 @@ export class UserController {
         message: error.message,
       };
     }
+  }
+
+  @MessagePattern({ cmd: 'changeAvatar' })
+  async changeAvatar(userId: string, avatar: string) {
+    this.logger.log(`Received change avatar request for user ${userId}`);
+    return this.userService.changeAvatar(userId, avatar);
   }
 }
