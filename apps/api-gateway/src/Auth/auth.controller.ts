@@ -49,6 +49,7 @@ export class AuthController {
       const response = await this.client
         .send({ cmd: 'authenticate' }, accessToken)
         .toPromise();
+      req.user = response;
       return response;
     } catch (error) {
       return { message: error.message };

@@ -1,4 +1,5 @@
 import { USER_SERVICE } from '@app/common';
+import { Request } from '@nestjs/common';
 import {
   Body,
   Controller,
@@ -29,6 +30,16 @@ export class UserUserController {
     console.log(body);
     const user = await this.client
       .send({ cmd: 'changeAvatar' }, {})
+      .toPromise();
+    return user;
+  }
+
+  @Post('update-profile')
+  @Roles(Role.USER, Role.ADMIN)
+  async updateProfile(@Body() body: any, @Request() req: any) {
+    const userId = req.user._id;
+    const user = await this.client
+      .send({ cmd: 'updateProfile' }, { userId, body })
       .toPromise();
     return user;
   }

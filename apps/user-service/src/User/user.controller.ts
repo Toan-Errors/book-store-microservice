@@ -87,4 +87,13 @@ export class UserController {
     this.logger.log(`Received change avatar request for user ${userId}`);
     return this.userService.changeAvatar(userId, avatar);
   }
+
+  @MessagePattern({ cmd: 'updateProfile' })
+  async updateProfile(data: {
+    userId: string;
+    body: CreateUserDto;
+  }): Promise<CreateUserDto> {
+    this.logger.log(`Received update profile request for user ${data.userId}`);
+    return this.userService.updateProfile(data.userId, data.body);
+  }
 }

@@ -21,6 +21,17 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+  cart-service:
+    build:
+      context: .
+      dockerfile: ./apps/cart-service/Dockerfile
+      target: development
+    command: npm run start:dev cart-service
+    env_file:
+      - ./apps/cart-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
   api-gateway:
     build:
       context: .

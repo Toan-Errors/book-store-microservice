@@ -37,6 +37,16 @@ export class UserService {
     return this.userModel.findByIdAndUpdate(userId, { avatar }, { new: true });
   }
 
+  async updateProfile(userId: string, profile: any): Promise<User | undefined> {
+    // update profile
+    const user = await this.userModel.findByIdAndUpdate(
+      userId,
+      { $set: profile },
+      { new: true },
+    );
+    return user;
+  }
+
   async comparePassword(
     password: string,
     hashedPassword: string,

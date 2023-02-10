@@ -40,9 +40,29 @@ export class User {
   })
   phone: string;
 
+  @Prop({
+    default: '',
+  })
+  avatar: string;
+
+  @Prop({
+    default: '',
+  })
   address: string;
+
+  @Prop({
+    default: '',
+  })
   city: string;
+
+  @Prop({
+    default: '',
+  })
   zipCode: string;
+
+  @Prop({
+    default: '',
+  })
   country: string;
 }
 

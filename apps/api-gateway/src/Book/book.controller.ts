@@ -7,7 +7,6 @@ export class BooksController {
 
   @Get()
   async findAll() {
-    console.log('findAll');
     const books = await this.client
       .send({ cmd: 'findAllBooks' }, {})
       .toPromise();
