@@ -32,6 +32,28 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+  rating-service:
+    build:
+      context: .
+      dockerfile: ./apps/rating-service/Dockerfile
+      target: development
+    command: npm run start:dev rating-service
+    env_file:
+      - ./apps/rating-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  order-service:
+    build:
+      context: .
+      dockerfile: ./apps/order-service/Dockerfile
+      target: development
+    command: npm run start:dev order-service
+    env_file:
+      - ./apps/order-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
   api-gateway:
     build:
       context: .

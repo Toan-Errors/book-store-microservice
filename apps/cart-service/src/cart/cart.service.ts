@@ -41,4 +41,16 @@ export class CartService {
   async delete(cartId: string): Promise<Cart> {
     return this.cartModel.findByIdAndDelete(cartId).exec();
   }
+
+  async changeQuantity(cartId: string, type: string): Promise<Cart> {
+    if (type === 'increase') {
+      return this.cartModel
+        .findByIdAndUpdate(cartId, { $inc: { quantity: 1 } }, { new: true })
+        .exec();
+    } else {
+      return this.cartModel
+        .findByIdAndUpdate(cartId, { $inc: { quantity: -1 } }, { new: true })
+        .exec();
+    }
+  }
 }

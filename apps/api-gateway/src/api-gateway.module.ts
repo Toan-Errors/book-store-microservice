@@ -6,6 +6,8 @@ import { ApiGatewayService } from './api-gateway.service';
 import { AuthModule } from './Auth/auth.module';
 import { BooksModule } from './Book/book.module';
 import { CartModule } from './Cart/cart.module';
+import { OrderModule } from './Order/order.module';
+import { RatingModule } from './Rating/rating.module';
 @Module({
   imports: [
     ClientsModule.register([
@@ -18,6 +20,8 @@ import { CartModule } from './Cart/cart.module';
     BooksModule,
     AuthModule,
     CartModule,
+    RatingModule,
+    OrderModule,
   ],
   controllers: [ApiGatewayController],
   providers: [ApiGatewayService],

@@ -31,10 +31,13 @@ export class CreateUserDto {
   readonly address: string;
 
   @IsString()
-  readonly city: string;
+  readonly wards: string;
 
   @IsString()
-  readonly zipCode: string;
+  readonly district: string;
+
+  @IsString()
+  readonly city: string;
 
   @IsString()
   readonly country: string;

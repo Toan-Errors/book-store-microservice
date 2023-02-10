@@ -1,19 +1,19 @@
-import { ORDER_SERVICE, REDIS_OPTIONS } from '@app/common';
+import { RATING_SERVICE, REDIS_OPTIONS } from '@app/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
-import { OrderServiceModule } from './order-service.module';
+import { RatingServiceModule } from './rating-service.module';
 
 const microserviceOptions = {
-  name: ORDER_SERVICE,
+  name: RATING_SERVICE,
   transport: Transport.REDIS,
   options: REDIS_OPTIONS,
 };
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(
-    OrderServiceModule,
+    RatingServiceModule,
     microserviceOptions,
   );
-  app.listen();
+  await app.listen();
 }
 bootstrap();

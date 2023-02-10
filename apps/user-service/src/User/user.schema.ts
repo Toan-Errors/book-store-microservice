@@ -53,12 +53,17 @@ export class User {
   @Prop({
     default: '',
   })
-  city: string;
+  wards: string;
 
   @Prop({
     default: '',
   })
-  zipCode: string;
+  district: string;
+
+  @Prop({
+    default: '',
+  })
+  city: string;
 
   @Prop({
     default: '',

@@ -81,6 +81,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/cart-service/tsconfig.app.json"
       }
+    },
+    "rating-service": {
+      "type": "application",
+      "root": "apps/rating-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/rating-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/rating-service/tsconfig.app.json"
+      }
     }
   }
 }

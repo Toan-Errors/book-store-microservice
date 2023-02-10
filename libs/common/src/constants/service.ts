@@ -3,7 +3,7 @@ export const USER_SERVICE = 'USER_SERVICE';
 export const CART_SERVICE = 'CART_SERVICE';
 export const ORDER_SERVICE = 'ORDER_SERVICE';
 export const PAYMENT_SERVICE = 'PAYMENT_SERVICE';
-export const INVENTORY_SERVICE = 'INVENTORY_SERVICE';
+export const RATING_SERVICE = 'RATING_SERVICE';
 
 export const REDIS_OPTIONS = {
   host: '138.2.76.195',

@@ -33,4 +33,10 @@ export class UserCartController {
       .send({ cmd: 'getCart' }, { userId: req.user._id })
       .toPromise();
   }
+
+  @Post('change-quantity')
+  @Roles(Role.USER, Role.ADMIN)
+  async changeQuantity(@Body() data: { cartId: string; type: string }) {
+    return await this.client.send({ cmd: 'changeQuantity' }, data).toPromise();
+  }
 }

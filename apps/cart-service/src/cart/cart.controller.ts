@@ -44,4 +44,12 @@ export class CartController {
     this.logger.log(`Deleting cart with id: ${id}`);
     return this.cartService.delete(id);
   }
+
+  @MessagePattern({ cmd: 'changeQuantity' })
+  async changeQuantity(data: { cartId: string; type: string }) {
+    this.logger.log(
+      `Changing quantity for cart with id: ${data.cartId}. Type: ${data.type}`,
+    );
+    return this.cartService.changeQuantity(data.cartId, data.type);
+  }
 }
