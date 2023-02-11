@@ -96,4 +96,45 @@ export class UserController {
     this.logger.log(`Received update profile request for user ${data.userId}`);
     return this.userService.updateProfile(data.userId, data.body);
   }
+
+  @MessagePattern({ cmd: 'addDeliveryAddress' })
+  async addDeliveryAddress(data: {
+    userId: string;
+    address: any;
+  }): Promise<CreateUserDto> {
+    this.logger.log(
+      `Received add delivery address request for user ${data.userId}`,
+    );
+    const id =
+      Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+    data.address.id = id;
+    return this.userService.addDeliveryAddress(data.userId, data.address);
+  }
+
+  @MessagePattern({ cmd: 'removeDeliveryAddress' })
+  async removeDeliveryAddress(data: {
+    userId: string;
+    addressId: string;
+  }): Promise<CreateUserDto> {
+    this.logger.log(
+      `Received remove delivery address request for user ${data.userId}`,
+    );
+    return this.userService.removeDeliveryAddress(data.userId, data.addressId);
+  }
+
+  @MessagePattern({ cmd: 'updateDeliveryAddress' })
+  async updateDeliveryAddress(data: {
+    userId: string;
+    addressId: string;
+    address: any;
+  }): Promise<CreateUserDto> {
+    this.logger.log(
+      `Received update delivery address request for user ${data.userId}`,
+    );
+    return this.userService.updateDeliveryAddress(
+      data.userId,
+      data.addressId,
+      data.address,
+    );
+  }
 }

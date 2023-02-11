@@ -72,4 +72,39 @@ export class UserService {
       return undefined;
     }
   }
+
+  async addDeliveryAddress(
+    userId: string,
+    address: any,
+  ): Promise<User | undefined> {
+    return this.userModel.findByIdAndUpdate(
+      userId,
+      { $push: { deliveryAddresses: address } },
+      { new: true },
+    );
+  }
+
+  async updateDeliveryAddress(
+    userId: string,
+    addressId: string,
+    address: any,
+  ): Promise<User | undefined> {
+    console.log(userId, addressId, address);
+    return this.userModel.findOneAndUpdate(
+      { _id: userId, 'deliveryAddresses.id': addressId },
+      { $set: { 'deliveryAddresses.$': address } },
+      { new: true },
+    );
+  }
+
+  async removeDeliveryAddress(
+    userId: string,
+    addressId: string,
+  ): Promise<User | undefined> {
+    return this.userModel.findByIdAndUpdate(
+      userId,
+      { $pull: { deliveryAddresses: { id: addressId } } },
+      { new: true },
+    );
+  }
 }

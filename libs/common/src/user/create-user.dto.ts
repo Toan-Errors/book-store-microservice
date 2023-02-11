@@ -26,19 +26,4 @@ export class CreateUserDto {
 
   @IsString()
   readonly avatar: string;
-
-  @IsString()
-  readonly address: string;
-
-  @IsString()
-  readonly wards: string;
-
-  @IsString()
-  readonly district: string;
-
-  @IsString()
-  readonly city: string;
-
-  @IsString()
-  readonly country: string;
 }

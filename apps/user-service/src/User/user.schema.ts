@@ -46,29 +46,18 @@ export class User {
   avatar: string;
 
   @Prop({
-    default: '',
+    default: [],
   })
-  address: string;
-
-  @Prop({
-    default: '',
-  })
-  wards: string;
-
-  @Prop({
-    default: '',
-  })
-  district: string;
-
-  @Prop({
-    default: '',
-  })
-  city: string;
-
-  @Prop({
-    default: '',
-  })
-  country: string;
+  deliveryAddresses: [
+    {
+      id: string;
+      address: string;
+      wards: string;
+      district: string;
+      city: string;
+      country: string;
+    },
+  ];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

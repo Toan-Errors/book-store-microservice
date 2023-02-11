@@ -1,5 +1,5 @@
 import { USER_SERVICE } from '@app/common';
-import { Request } from '@nestjs/common';
+import { Delete, Put, Request } from '@nestjs/common';
 import {
   Body,
   Controller,
@@ -40,6 +40,44 @@ export class UserUserController {
     const userId = req.user._id;
     const user = await this.client
       .send({ cmd: 'updateProfile' }, { userId, body })
+      .toPromise();
+    return user;
+  }
+
+  // add Delivery Address
+  @Post('delivery-address')
+  @Roles(Role.USER, Role.ADMIN)
+  async addDeliveryAddress(@Body() body: any, @Request() req: any) {
+    const userId = req.user._id;
+    const user = await this.client
+      .send({ cmd: 'addDeliveryAddress' }, { userId, address: body })
+      .toPromise();
+    return user;
+  }
+
+  // update Delivery Address
+  @Put('delivery-address')
+  @Roles(Role.USER, Role.ADMIN)
+  async updateDeliveryAddress(@Body() body: any, @Request() req: any) {
+    const userId = req.user._id;
+    const addressId = body.id;
+    const user = await this.client
+      .send(
+        { cmd: 'updateDeliveryAddress' },
+        { userId, addressId, address: body },
+      )
+      .toPromise();
+    return user;
+  }
+
+  // delete Delivery Address
+  @Delete('delivery-address')
+  @Roles(Role.USER, Role.ADMIN)
+  async deleteDeliveryAddress(@Body() body: any, @Request() req: any) {
+    const userId = req.user._id;
+    const addressId = body.addressId;
+    const user = await this.client
+      .send({ cmd: 'removeDeliveryAddress' }, { userId, addressId })
       .toPromise();
     return user;
   }
