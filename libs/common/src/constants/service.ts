@@ -4,6 +4,7 @@ export const CART_SERVICE = 'CART_SERVICE';
 export const ORDER_SERVICE = 'ORDER_SERVICE';
 export const PAYMENT_SERVICE = 'PAYMENT_SERVICE';
 export const RATING_SERVICE = 'RATING_SERVICE';
+export const WISHLIST_SERVICE = 'WISHLIST_SERVICE';
 
 export const REDIS_OPTIONS = {
   host: '138.2.76.195',

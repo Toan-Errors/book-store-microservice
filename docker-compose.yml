@@ -54,6 +54,17 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+  wishlist-service:
+    build:
+      context: .
+      dockerfile: ./apps/wishlist-service/Dockerfile
+      target: development
+    command: npm run start:dev wishlist-service
+    env_file:
+      - ./apps/wishlist-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
   api-gateway:
     build:
       context: .

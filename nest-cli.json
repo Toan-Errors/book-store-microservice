@@ -90,6 +90,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/rating-service/tsconfig.app.json"
       }
+    },
+    "wishlist-service": {
+      "type": "application",
+      "root": "apps/wishlist-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/wishlist-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/wishlist-service/tsconfig.app.json"
+      }
     }
   }
 }

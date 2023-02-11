@@ -8,6 +8,7 @@ import { BooksModule } from './Book/book.module';
 import { CartModule } from './Cart/cart.module';
 import { OrderModule } from './Order/order.module';
 import { RatingModule } from './Rating/rating.module';
+import { WishlistModule } from './Wishlist/wishlist.module';
 @Module({
   imports: [
     ClientsModule.register([
@@ -22,6 +23,7 @@ import { RatingModule } from './Rating/rating.module';
     CartModule,
     RatingModule,
     OrderModule,
+    WishlistModule,
   ],
   controllers: [ApiGatewayController],
   providers: [ApiGatewayService],
