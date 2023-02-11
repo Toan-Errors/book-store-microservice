@@ -26,4 +26,8 @@ export class RatingService {
   async findByBookId(bookId: string): Promise<Rating[]> {
     return this.ratingModel.find({ bookId }).exec();
   }
+
+  async findByUserIdAndBookId(userId: string, bookId: string): Promise<any> {
+    return this.ratingModel.find({ userId, bookId }).exec();
+  }
 }

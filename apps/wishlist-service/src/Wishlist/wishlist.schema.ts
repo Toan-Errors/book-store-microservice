@@ -18,11 +18,6 @@ export class Wishlist {
     required: true,
   })
   bookId: string;
-
-  @Prop({
-    default: false,
-  })
-  isDeleted: boolean;
 }
 
 export const WishlistSchema = SchemaFactory.createForClass(Wishlist);

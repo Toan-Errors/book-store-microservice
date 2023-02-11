@@ -5,6 +5,9 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
@@ -20,6 +23,7 @@
     "test:e2e": "jest --config ./apps/book-store/test/jest-e2e.json"
   },
   "dependencies": {
+    "@jridgewell/sourcemap-codec": "^1.4.14",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",

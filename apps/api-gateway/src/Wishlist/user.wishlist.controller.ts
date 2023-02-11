@@ -1,5 +1,13 @@
 import { WISHLIST_SERVICE } from '@app/common';
-import { Controller, Get, Inject, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  UseGuards,
+  Post,
+  Body,
+  Request,
+} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Roles } from '../Auth/role.decorator';
 import { Role } from '../Auth/role.enum';
@@ -13,9 +21,22 @@ export class UserWishlistController {
     readonly client: ClientProxy,
   ) {}
 
-  @Get()
-  @Roles(Role.ADMIN)
-  async getWishlist() {
-    return await this.client.send({ cmd: 'findAllWishlist' }, {}).toPromise();
+  @Post()
+  @Roles(Role.ADMIN, Role.USER)
+  async createWishlist(@Body() book: any, @Request() req: any) {
+    const userId = req.user._id;
+    const bookId = book.bookId;
+    return await this.client
+      .send({ cmd: 'createWishlist' }, { bookId, userId })
+      .toPromise();
+  }
+
+  @Get('user')
+  @Roles(Role.ADMIN, Role.USER)
+  async findByUserIdWishlist(@Request() req: any) {
+    const userId = req.user._id;
+    return await this.client
+      .send({ cmd: 'findByUserIdWishlist' }, userId)
+      .toPromise();
   }
 }

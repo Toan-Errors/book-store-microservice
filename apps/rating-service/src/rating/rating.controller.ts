@@ -10,6 +10,19 @@ export class RatingController {
 
   @MessagePattern({ cmd: 'createRating' })
   async createRating(rating: any) {
+    const { userId, bookId } = rating;
+    if (!userId || !bookId) throw new Error('Invalid data');
+    const existingRating = await this.ratingService.findByUserIdAndBookId(
+      userId,
+      bookId,
+    );
+
+    if (existingRating) {
+      return {
+        message: 'Rating already exists',
+      };
+    }
+
     this.logger.log(`Creating a new rating: ${JSON.stringify(rating)}`);
     return this.ratingService.create(rating);
   }
@@ -24,5 +37,11 @@ export class RatingController {
   async findRatingsByBookId(bookId: string) {
     this.logger.log(`Getting ratings for book: ${bookId}`);
     return this.ratingService.findByBookId(bookId);
+  }
+
+  @MessagePattern({ cmd: '*' })
+  async default(data: any) {
+    this.logger.log(`Default message: ${JSON.stringify(data)}`);
+    return { message: 'Default message' };
   }
 }
