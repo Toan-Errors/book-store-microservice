@@ -46,7 +46,11 @@ export class User {
   avatar: string;
 
   @Prop({
-    default: [],
+    default: [
+      {
+        default: false,
+      },
+    ],
   })
   deliveryAddresses: [
     {
@@ -56,6 +60,9 @@ export class User {
       district: string;
       city: string;
       country: string;
+      name: string;
+      phone: string;
+      default: boolean;
     },
   ];
 }
