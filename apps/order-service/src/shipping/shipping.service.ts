@@ -6,7 +6,7 @@ import { Shipping } from './shipping.schema';
 @Injectable()
 export class ShippingService {
   constructor(
-    @InjectModel('Shipping') private readonly shippingModel: Model<Shipping>,
+    @InjectModel(Shipping.name) private readonly shippingModel: Model<Shipping>,
   ) {}
 
   //Create

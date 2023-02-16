@@ -23,6 +23,6 @@ export class ShippingController {
   @MessagePattern({ cmd: 'createShipping' })
   async createShipping(data: { shipping: OrderShippingDto }) {
     this.logger.log(`Received create shipping command for ${data.shipping}`);
-    return this.shippingService.create(data as any);
+    return this.shippingService.create(data.shipping);
   }
 }

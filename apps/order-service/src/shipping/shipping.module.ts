@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common/decorators';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ShippingController } from './shipping.controller';
 import { Shipping, ShippingSchema } from './shipping.schema';
+import { ShippingService } from './shipping.service';
 
 @Module({
   imports: [
@@ -11,7 +13,7 @@ import { Shipping, ShippingSchema } from './shipping.schema';
       },
     ]),
   ],
-  controllers: [],
-  providers: [],
+  controllers: [ShippingController],
+  providers: [ShippingService],
 })
 export class ShippingModule {}

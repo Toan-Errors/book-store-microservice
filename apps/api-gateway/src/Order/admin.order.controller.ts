@@ -17,4 +17,12 @@ export class AdminOrderController {
       .send({ cmd: 'createShipping' }, { shipping: data })
       .toPromise();
   }
+
+  @Post('create-payment')
+  @Roles(Role.ADMIN)
+  async createPayment(@Body() data: any) {
+    return await this.client
+      .send({ cmd: 'createPayment' }, { payment: data })
+      .toPromise();
+  }
 }
