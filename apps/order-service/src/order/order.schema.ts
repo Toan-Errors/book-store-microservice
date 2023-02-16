@@ -1,6 +1,5 @@
+import { AddressDetailDto, OrderShippingDto } from '@app/common';
 import { AddToOrderDto } from '@app/common/order/add-to-order.dto';
-import { AddressDetailDto } from '@app/common/order/address_detail.dto';
-import { OrderShippingDto } from '@app/common/order/order-shipping.dto';
 import { OrderPaymentDto } from '@app/common/order/order_payment.dto';
 import {
   Prop,

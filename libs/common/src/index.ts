@@ -8,3 +8,8 @@ export * from './cart/add-to-cart.dto';
 export * from './wishlist/create-wishlist.dto';
 
 export * from './constants/service';
+
+//Order matters
+export * from './order/add-to-order.dto';
+export * from './order/address_detail.dto';
+export * from './order/order-shipping.dto';

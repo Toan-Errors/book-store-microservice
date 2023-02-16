@@ -1,27 +1,27 @@
 import { Controller, Logger } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { BookService } from '../book/book.service';
+import { GenresService } from './genres.service';
 
 @Controller('genres')
 export class GenresController {
-  constructor(private readonly bookService: BookService) {}
+  constructor(private readonly genresService: GenresService) {}
   private readonly logger = new Logger(GenresController.name);
 
   @MessagePattern({ cmd: 'findAllGenres' })
   async findAllGenres() {
     this.logger.log(`Received find all genres command`);
-    return this.bookService.findAll();
+    return this.genresService.findAll();
   }
 
   @MessagePattern({ cmd: 'findGenreById' })
   async findGenreById(data: { id: string }) {
     this.logger.log(`Received find genre by id command for ${data.id}`);
-    return this.bookService.findById(data.id);
+    return this.genresService.findById(data.id);
   }
 
   @MessagePattern({ cmd: 'createGenre' })
   async createGenre(data: { genre: string }) {
     this.logger.log(`Received create genre command for ${data.genre}`);
-    return this.bookService.create(data as any);
+    return this.genresService.create(data as any);
   }
 }

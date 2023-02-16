@@ -1,6 +1,7 @@
 import { ORDER_SERVICE, REDIS_OPTIONS, USER_SERVICE } from '@app/common';
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { AdminOrderController } from './admin.order.controller';
 import { UserOrderController } from './user.order.controller';
 
 @Module({
@@ -18,6 +19,6 @@ import { UserOrderController } from './user.order.controller';
       },
     ]),
   ],
-  controllers: [UserOrderController],
+  controllers: [UserOrderController, AdminOrderController],
 })
 export class OrderModule {}

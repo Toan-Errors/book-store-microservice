@@ -1,15 +1,15 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class OrderShippingDto {
   @IsString()
   @IsNotEmpty()
   readonly shippingMethod: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  readonly shippingStatus: string;
+  readonly shippingCost: number;
 
   @IsString()
   @IsNotEmpty()
-  readonly shippingId: string;
+  readonly shippingTime: string;
 }
