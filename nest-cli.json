@@ -99,6 +99,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/wishlist-service/tsconfig.app.json"
       }
+    },
+    "newletter-service": {
+      "type": "application",
+      "root": "apps/newletter-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/newletter-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/newletter-service/tsconfig.app.json"
+      }
     }
   }
 }
