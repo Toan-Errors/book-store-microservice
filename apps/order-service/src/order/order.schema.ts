@@ -1,6 +1,5 @@
 import { AddressDetailDto, OrderShippingDto } from '@app/common';
 import { AddToOrderDto } from '@app/common/order/add-to-order.dto';
-import { OrderPaymentDto } from '@app/common/order/order_payment.dto';
 import {
   Prop,
   Schema as SchemaDecorator,
@@ -20,7 +19,12 @@ export class Order {
   @Prop({
     required: true,
   })
-  books: AddToOrderDto[]; // the unique identifier of the book associated with the order
+  items: AddToOrderDto[]; // the unique identifier of the book associated with the order
+
+  @Prop({
+    required: true,
+  })
+  subtotal: number; // subtotal price of the order
 
   @Prop({
     required: true,
@@ -29,19 +33,19 @@ export class Order {
 
   @Prop({
     required: true,
+  })
+  delivery_address: AddressDetailDto; // address of the user associated with the order
+
+  @Prop({
     enum: ['pending', 'shipping', 'completed', 'canceled'],
+    default: 'pending',
   })
   status: string; // status of the order
 
   @Prop({
     required: true,
   })
-  address_detail: AddressDetailDto; // address of the user associated with the order
-
-  @Prop({
-    required: true,
-  })
-  payment: OrderPaymentDto; // payment of the user associated with the order
+  payment: string; // payment of the user associated with the order
 
   @Prop({
     required: true,

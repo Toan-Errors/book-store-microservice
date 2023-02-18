@@ -1,5 +1,12 @@
-import { ORDER_SERVICE } from '@app/common';
-import { Controller, Inject, Post, UseGuards } from '@nestjs/common';
+import { AddToOrderDto, ORDER_SERVICE } from '@app/common';
+import {
+  Body,
+  Controller,
+  Inject,
+  Post,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Roles } from '../Auth/role.decorator';
 import { Role } from '../Auth/role.enum';
@@ -12,8 +19,10 @@ export class UserOrderController {
 
   @Post()
   @Roles(Role.USER, Role.ADMIN)
-  async createOrder() {
-    return await this.client.send({ cmd: 'createOrder' }, {}).toPromise();
+  async createOrder(@Body() order: AddToOrderDto, @Request() req) {
+    return await this.client
+      .send({ cmd: 'createOrder' }, { ...order, userId: req.user._id })
+      .toPromise();
   }
 
   @Post('find-all')

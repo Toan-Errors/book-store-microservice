@@ -1,30 +1,30 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { AddressDetailDto } from './address_detail.dto';
+import { OrderShippingDto } from './order-shipping.dto';
 
 export class AddToOrderDto {
   @IsNotEmpty()
-  readonly bookId: string;
-
   @IsString()
-  @IsNotEmpty()
-  readonly title: string;
+  userId: string;
 
-  @IsString()
   @IsNotEmpty()
-  readonly author: string;
+  delivery_address: AddressDetailDto;
 
-  @IsString()
   @IsNotEmpty()
-  readonly coverImage: string;
+  @IsString()
+  payment: string;
 
-  @IsString()
   @IsNotEmpty()
-  readonly price: string;
+  shipping: OrderShippingDto;
 
-  @IsString()
   @IsNotEmpty()
-  readonly price_sale: string;
+  items: any[];
 
-  @IsString()
   @IsNotEmpty()
-  readonly quantity: string;
+  @IsNumber()
+  subtotal: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  total: number;
 }

@@ -1,5 +1,7 @@
+import { AddToOrderDto } from '@app/common';
 import { Controller, Injectable, Logger } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
+import { Order } from './order.schema';
 import { OrderService } from './order.service';
 
 @Injectable()
@@ -19,7 +21,7 @@ export class OrderController {
   }
 
   @MessagePattern({ cmd: 'createOrder' })
-  async createOrder(order: any) {
+  async createOrder(order: Order) {
     this.logger.log(`Creating a new order: ${JSON.stringify(order)}`);
     return this.orderService.create(order);
   }

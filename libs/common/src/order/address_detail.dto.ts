@@ -26,4 +26,31 @@ export class AddressDetailDto {
   @IsString()
   @IsNotEmpty()
   readonly country: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly id: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly phone: string;
+
+  @IsString()
+  readonly email: string;
+
+  @IsString()
+  readonly isDefault: boolean;
+
+  @IsString()
+  readonly isDeleted: boolean;
+
+  @IsString()
+  readonly createdAt: Date;
+
+  @IsString()
+  readonly updatedAt: Date;
 }
