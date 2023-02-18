@@ -42,6 +42,11 @@ export class CartService {
     return this.cartModel.findByIdAndDelete(cartId).exec();
   }
 
+  async deletes(data: any): Promise<any> {
+    const { ids } = data;
+    return this.cartModel.deleteMany({ _id: { $in: ids } }).exec();
+  }
+
   async changeQuantity(cartId: string, type: string): Promise<Cart> {
     if (type === 'increase') {
       return this.cartModel

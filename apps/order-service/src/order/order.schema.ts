@@ -7,7 +7,7 @@ import {
 } from '@nestjs/mongoose';
 
 @SchemaDecorator({
-  collection: 'inventories',
+  collection: 'order',
   timestamps: true,
 })
 export class Order {

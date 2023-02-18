@@ -7,6 +7,8 @@ import {
   Post,
   Request,
   UseGuards,
+  Delete,
+  Param,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Roles } from '../Auth/role.decorator';
@@ -38,5 +40,19 @@ export class UserCartController {
   @Roles(Role.USER, Role.ADMIN)
   async changeQuantity(@Body() data: { cartId: string; type: string }) {
     return await this.client.send({ cmd: 'changeQuantity' }, data).toPromise();
+  }
+
+  @Delete(':id')
+  @Roles(Role.USER, Role.ADMIN)
+  async deleteCart(@Param('id') id: string) {
+    return await this.client.send({ cmd: 'deleteCart' }, id).toPromise();
+  }
+
+  @Post('delete')
+  @Roles(Role.USER, Role.ADMIN)
+  async deleteCarts(@Body() data: { ids: string[] }) {
+    return await this.client
+      .send({ cmd: 'deleteCarts' }, { ids: data.ids })
+      .toPromise();
   }
 }
