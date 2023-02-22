@@ -55,7 +55,6 @@ export class CartController {
 
   @MessagePattern({ cmd: 'deleteCarts' })
   async deleteCarts(ids: string[]) {
-    console.log(ids);
     this.logger.log(`Deleting carts with ids: ${ids}`);
     return this.cartService.deletes(ids);
   }
