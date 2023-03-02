@@ -16,8 +16,8 @@ export class OrderController {
   }
 
   @MessagePattern({ cmd: 'findOrderByUserId' })
-  async findOrderByUserId(userId: string) {
-    return this.orderService.findByUserId(userId);
+  async findOrderByUserId(data: { userId: string }) {
+    return this.orderService.findByUserId(data.userId);
   }
 
   @MessagePattern({ cmd: 'createOrder' })

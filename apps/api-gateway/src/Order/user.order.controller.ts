@@ -6,6 +6,7 @@ import {
   Post,
   UseGuards,
   Request,
+  Get,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Roles } from '../Auth/role.decorator';
@@ -41,5 +42,13 @@ export class UserOrderController {
   @Roles(Role.USER, Role.ADMIN)
   async updateOrderStatus() {
     return await this.client.send({ cmd: 'updateOrderStatus' }, {}).toPromise();
+  }
+
+  @Get()
+  @Roles(Role.USER, Role.ADMIN)
+  async getOrders(@Request() req) {
+    return await this.client
+      .send({ cmd: 'findOrderByUserId' }, { userId: req.user._id })
+      .toPromise();
   }
 }
