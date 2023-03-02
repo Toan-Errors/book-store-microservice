@@ -16,6 +16,7 @@ export class Wishlist {
 
   @Prop({
     required: true,
+    ref: 'Book',
   })
   bookId: string;
 }

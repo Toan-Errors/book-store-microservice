@@ -1,5 +1,11 @@
 import { USER_SERVICE } from '@app/common';
-import { Delete, Put, Request } from '@nestjs/common';
+import {
+  Delete,
+  HttpException,
+  HttpStatus,
+  Put,
+  Request,
+} from '@nestjs/common';
 import {
   Body,
   Controller,
@@ -80,5 +86,23 @@ export class UserUserController {
       .send({ cmd: 'removeDeliveryAddress' }, { userId, addressId })
       .toPromise();
     return user;
+  }
+
+  @Put('change-password')
+  @Roles(Role.USER, Role.ADMIN)
+  async changePassword(@Request() req: any, @Body() body: any) {
+    const userId = req.user._id;
+    const { oldPassword, newPassword } = body;
+    try {
+      const response = await this.client
+        .send(
+          { cmd: 'changePassword' },
+          { userId, oldPassword, password: newPassword },
+        )
+        .toPromise();
+      return response;
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }

@@ -80,4 +80,40 @@ export class AuthController {
       };
     }
   }
+
+  @MessagePattern({ cmd: 'changePassword' })
+  async changePassword(data: {
+    userId: string;
+    password: string;
+    oldPassword;
+  }) {
+    this.logger.log(`Received change password request for user ${data.userId}`);
+    try {
+      const user = await this.authService.findById(data.userId);
+      if (!user) {
+        return {
+          message: 'User not found',
+        };
+      }
+      const isMatch = await this.authService.comparePassword(
+        data.oldPassword,
+        user.password,
+      );
+      if (!isMatch) {
+        return {
+          message: 'Password is incorrect',
+        };
+      }
+      const updatedUser = await this.authService.changePassword(
+        data.userId,
+        data.password,
+      );
+      this.logger.log(`Successfully changed password for user ${data.userId}`);
+      return { user: updatedUser };
+    } catch (error) {
+      return {
+        message: error.message,
+      };
+    }
+  }
 }

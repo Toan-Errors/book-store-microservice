@@ -7,6 +7,7 @@ import {
   Inject,
   Request,
   Get,
+  Put,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CreateUserDto, LoginUserDto, USER_SERVICE } from '@app/common';

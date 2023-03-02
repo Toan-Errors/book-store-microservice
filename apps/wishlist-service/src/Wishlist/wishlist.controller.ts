@@ -37,4 +37,10 @@ export class WishlistController {
     this.logger.log('find-by-book-id-wishlist');
     return this.wishlistService.findByBookId(bookId);
   }
+
+  @MessagePattern({ cmd: 'findAllWishlist' })
+  async findAllWishlist() {
+    this.logger.log('find-all-wishlist');
+    return this.wishlistService.findAll();
+  }
 }

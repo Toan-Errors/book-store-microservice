@@ -18,6 +18,10 @@ export class AuthService {
     return this.userModel.findOne({ email });
   }
 
+  async findById(id: string): Promise<User | undefined> {
+    return this.userModel.findById(id);
+  }
+
   async create(createUserDto: CreateUserDto): Promise<User> {
     const { password, ...userData } = createUserDto;
     const hashedPassword = await bcrypt.hash(password, this.saltRounds);
@@ -52,5 +56,17 @@ export class AuthService {
     } catch (error) {
       return undefined;
     }
+  }
+
+  async changePassword(
+    userId: string,
+    password: string,
+  ): Promise<User | undefined> {
+    const hashedPassword = await bcrypt.hash(password, this.saltRounds);
+    return this.userModel.findByIdAndUpdate(
+      userId,
+      { password: hashedPassword },
+      { new: true },
+    );
   }
 }
