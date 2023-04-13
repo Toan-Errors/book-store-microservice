@@ -2,7 +2,6 @@ export class ListAllEntitiesDto {
   readonly _id: object;
   readonly title: string;
   readonly subtitle: string;
-  readonly description: string;
   readonly author: string;
   readonly country: string;
   readonly ageGroup: string;

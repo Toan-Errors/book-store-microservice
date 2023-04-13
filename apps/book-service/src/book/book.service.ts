@@ -17,7 +17,6 @@ export class BookService {
       _id: book._id,
       title: book.title,
       subtitle: book.subtitle,
-      description: book.description,
       author: book.author,
       country: book.country,
       ageGroup: book.ageGroup,
@@ -32,6 +31,42 @@ export class BookService {
       language: book.language,
       createdAt: book.createdAt,
     }));
+  }
+
+  async findBooksByPagination(
+    query: any,
+    page: number,
+    limit: number,
+  ): Promise<any> {
+    const books = await this.bookModel
+      .find({ ...query })
+      .skip(page)
+      .limit(limit)
+      .sort({ createdAt: -1 });
+
+    const countDocuments = await this.bookModel.countDocuments({ ...query });
+
+    return {
+      books: books.map((book: any) => ({
+        _id: book._id,
+        title: book.title,
+        subtitle: book.subtitle,
+        author: book.author,
+        country: book.country,
+        ageGroup: book.ageGroup,
+        saleDate: book.saleDate,
+        price: book.price,
+        price_sale: book.price_sale,
+        publisher: book.publisher,
+        genres: book.genres,
+        pages: book.pages,
+        coverImage: book.coverImage,
+        images: book.images,
+        language: book.language,
+        createdAt: book.createdAt,
+      })),
+      countDocuments,
+    };
   }
 
   async findById(id: string): Promise<Book> {

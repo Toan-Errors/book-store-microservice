@@ -15,6 +15,20 @@ export class BookController {
     return this.bookService.findAll();
   }
 
+  @MessagePattern({ cmd: 'findBooksByPagination' })
+  async findBooksByPagination(data: {
+    query: any;
+    page: number;
+    limit: number;
+  }) {
+    this.logger.log(`Received find books by pagination command`);
+    return this.bookService.findBooksByPagination(
+      data.query || {},
+      data.page,
+      data.limit,
+    );
+  }
+
   @MessagePattern({ cmd: 'findBookById' })
   async findBookById(data: { id: string }) {
     this.logger.log(`Received find book by id command for ${data.id}`);
