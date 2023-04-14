@@ -38,12 +38,6 @@ export class UserOrderController {
     return await this.client.send({ cmd: 'findOrderByUserId' }, {}).toPromise();
   }
 
-  @Post('update-status')
-  @Roles(Role.USER, Role.ADMIN)
-  async updateOrderStatus() {
-    return await this.client.send({ cmd: 'updateOrderStatus' }, {}).toPromise();
-  }
-
   @Get()
   @Roles(Role.USER, Role.ADMIN)
   async getOrders(@Request() req) {

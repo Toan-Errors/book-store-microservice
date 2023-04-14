@@ -62,4 +62,28 @@ export class UserService {
     );
     return user;
   }
+
+  async getAllUsers(
+    query: any,
+    page: number,
+    limit: number,
+  ): Promise<User[] | undefined> {
+    const users = await this.userModel
+      .find(query)
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .exec();
+    return users;
+  }
+
+  async getUserAnalytics(): Promise<any> {
+    const count = await this.userModel.countDocuments();
+    const newUser = await this.userModel.countDocuments({
+      createdAt: {
+        $gte: new Date(new Date().setDate(new Date().getDate() - 7)),
+      },
+    });
+
+    return { totalUsers: count, newUser };
+  }
 }

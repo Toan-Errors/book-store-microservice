@@ -40,4 +40,18 @@ export class OrderService {
       )
       .exec();
   }
+
+  async getAllOrders(
+    query: any | undefined,
+    page: number,
+    limit: number,
+  ): Promise<Order[]> {
+    console.log(query);
+    const orders = await this.orderModel
+      .find(query)
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .exec();
+    return orders;
+  }
 }

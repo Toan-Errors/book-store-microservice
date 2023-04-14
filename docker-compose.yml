@@ -1,4 +1,17 @@
 services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+      target: development
+    command: npm run start:dev api-gateway
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./apps/api-gateway/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
   user-service:
     build:
       context: .
@@ -21,67 +34,47 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-  cart-service:
-    build:
-      context: .
-      dockerfile: ./apps/cart-service/Dockerfile
-      target: development
-    command: npm run start:dev cart-service
-    env_file:
-      - ./apps/cart-service/.env
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-  rating-service:
-    build:
-      context: .
-      dockerfile: ./apps/rating-service/Dockerfile
-      target: development
-    command: npm run start:dev rating-service
-    env_file:
-      - ./apps/rating-service/.env
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-  order-service:
-    build:
-      context: .
-      dockerfile: ./apps/order-service/Dockerfile
-      target: development
-    command: npm run start:dev order-service
-    env_file:
-      - ./apps/order-service/.env
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-  wishlist-service:
-    build:
-      context: .
-      dockerfile: ./apps/wishlist-service/Dockerfile
-      target: development
-    command: npm run start:dev wishlist-service
-    env_file:
-      - ./apps/wishlist-service/.env
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-  api-gateway:
-    build:
-      context: .
-      dockerfile: ./apps/api-gateway/Dockerfile
-      target: development
-    command: npm run start:dev api-gateway
-    ports:
-      - '3000:3000'
-    env_file:
-      - ./apps/api-gateway/.env
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    depends_on:
-      - user-service
-      - book-service
-      - cart-service
-      - rating-service
-      - order-service
-      - wishlist-service
+  # cart-service:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/cart-service/Dockerfile
+  #     target: development
+  #   command: npm run start:dev cart-service
+  #   env_file:
+  #     - ./apps/cart-service/.env
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  # rating-service:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/rating-service/Dockerfile
+  #     target: development
+  #   command: npm run start:dev rating-service
+  #   env_file:
+  #     - ./apps/rating-service/.env
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  # order-service:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/order-service/Dockerfile
+  #     target: development
+  #   command: npm run start:dev order-service
+  #   env_file:
+  #     - ./apps/order-service/.env
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  # wishlist-service:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/wishlist-service/Dockerfile
+  #     target: development
+  #   command: npm run start:dev wishlist-service
+  #   env_file:
+  #     - ./apps/wishlist-service/.env
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules

@@ -64,4 +64,20 @@ export class UserController {
       data.address,
     );
   }
+
+  @MessagePattern({ cmd: 'getAllUsers' })
+  async getAllUsers(data: {
+    query: any | undefined;
+    page: number;
+    limit: number;
+  }): Promise<any> {
+    this.logger.log(`Received get all users request`);
+    return this.userService.getAllUsers(data.query, data.page, data.limit);
+  }
+
+  @MessagePattern({ cmd: 'getUserAnalytics' })
+  async getUserAnalytics(): Promise<any> {
+    this.logger.log(`Received get user analytics request`);
+    return this.userService.getUserAnalytics();
+  }
 }

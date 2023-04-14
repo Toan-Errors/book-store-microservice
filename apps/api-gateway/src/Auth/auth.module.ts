@@ -1,6 +1,7 @@
 import { REDIS_OPTIONS, USER_SERVICE } from '@app/common';
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { AdminUserController } from './admin.auth.controller';
 import { AuthController } from './auth.controller';
 import { UserUserController } from './user.auth.controller';
 
@@ -14,6 +15,6 @@ import { UserUserController } from './user.auth.controller';
       },
     ]),
   ],
-  controllers: [AuthController, UserUserController],
+  controllers: [AuthController, UserUserController, AdminUserController],
 })
 export class AuthModule {}
