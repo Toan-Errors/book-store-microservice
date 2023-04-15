@@ -3,6 +3,10 @@ import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AdminBooksController } from './admin.book.controller';
 import { BooksController } from './book.controller';
+import { AuthorController } from './author/user.author.controller';
+import { AdminAuthorController } from './author/admin.author.controller';
+import { GenresController } from './genres/user.genre.controller';
+import { AdminGenresController } from './genres/admin.genre.controller';
 
 @Module({
   imports: [
@@ -21,6 +25,13 @@ import { BooksController } from './book.controller';
       },
     ]),
   ],
-  controllers: [BooksController, AdminBooksController],
+  controllers: [
+    BooksController,
+    AdminBooksController,
+    AuthorController,
+    AdminAuthorController,
+    GenresController,
+    AdminGenresController,
+  ],
 })
 export class BooksModule {}

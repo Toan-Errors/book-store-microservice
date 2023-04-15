@@ -1,6 +1,7 @@
 import { Controller, Logger } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { GenresService } from './genres.service';
+import { Genre } from './genres.schema';
 
 @Controller('genres')
 export class GenresController {
@@ -20,8 +21,20 @@ export class GenresController {
   }
 
   @MessagePattern({ cmd: 'createGenre' })
-  async createGenre(data: { genre: string }) {
-    this.logger.log(`Received create genre command for ${data.genre}`);
-    return this.genresService.create(data as any);
+  async createGenre(data: Genre) {
+    this.logger.log(`Received create genre command for ${data.name}`);
+    return this.genresService.create(data);
+  }
+
+  @MessagePattern({ cmd: 'updateGenre' })
+  async updateGenre(data: { id: string; body: Genre }) {
+    this.logger.log(`Received update genre command for ${data.id}`);
+    return this.genresService.update(data.id, data.body);
+  }
+
+  @MessagePattern({ cmd: 'deleteGenre' })
+  async deleteGenre(data: { id: string }) {
+    this.logger.log(`Received delete genre command for ${data.id}`);
+    return this.genresService.delete(data.id);
   }
 }

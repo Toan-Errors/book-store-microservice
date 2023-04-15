@@ -8,6 +8,7 @@ import {
   Delete,
   Inject,
   UseGuards,
+  Get,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Roles } from '../Auth/role.decorator';
@@ -18,6 +19,15 @@ import { RoleGuard } from '../Auth/role.guard';
 @UseGuards(RoleGuard)
 export class AdminBooksController {
   constructor(@Inject(BOOK_SERVICE) readonly client: ClientProxy) {}
+
+  @Get('/book/analytics')
+  @Roles(Role.ADMIN)
+  async getBookAnalytics() {
+    const analytics = await this.client
+      .send({ cmd: 'getBookAnalytics' }, {})
+      .toPromise();
+    return analytics;
+  }
 
   @Post()
   @Roles(Role.ADMIN)

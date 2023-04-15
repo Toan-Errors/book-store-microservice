@@ -85,4 +85,19 @@ export class BookService {
   async delete(id: string): Promise<any> {
     return this.bookModel.findByIdAndRemove(id);
   }
+
+  async getBookAnalytics(): Promise<any> {
+    const totalBooks = await this.bookModel.countDocuments();
+    console.log(totalBooks);
+    const newBooks = await this.bookModel.countDocuments({
+      createdAt: {
+        $gte: new Date(new Date().setDate(new Date().getDate() - 7)),
+      },
+    });
+
+    return {
+      totalBooks,
+      newBooks,
+    };
+  }
 }

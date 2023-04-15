@@ -55,4 +55,11 @@ export class BookController {
     this.logger.log(`Received delete book command for ${data.id}`);
     return this.bookService.delete(data.id);
   }
+
+  @MessagePattern({ cmd: 'getBookAnalytics' })
+  async getBookAnalytics(): Promise<any> {
+    console.log('getBookAnalytics');
+    this.logger.log(`Received get book analytics command`);
+    return this.bookService.getBookAnalytics();
+  }
 }

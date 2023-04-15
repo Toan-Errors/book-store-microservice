@@ -23,4 +23,14 @@ export class GenresService {
   async findById(id: string): Promise<Genre> {
     return await this.genreModel.findById(id).exec();
   }
+
+  //update
+  async update(id: string, genre: any): Promise<Genre> {
+    return await this.genreModel.findByIdAndUpdate(id, genre, { new: true });
+  }
+
+  //delete
+  async delete(id: string): Promise<Genre> {
+    return await this.genreModel.findByIdAndRemove(id);
+  }
 }

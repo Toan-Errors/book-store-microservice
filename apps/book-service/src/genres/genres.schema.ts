@@ -13,6 +13,9 @@ export class Genre {
     required: true,
   })
   name: string; //name of the genre
+
+  @Prop()
+  description: string; //description of the genre
 }
 
 export const GenreSchema = SchemaFactory.createForClass(Genre);
