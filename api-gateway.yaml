@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-gateway
+  namespace: default
+spec:
+  containers:
+    - image: zzbadaozz/book-store-microservice-api-gateway:latest
+      name: api-gateway

@@ -8,9 +8,9 @@ export const WISHLIST_SERVICE = 'WISHLIST_SERVICE';
 export const NEWLETTER_SERVICE = 'NEWLETTER_SERVICE';
 
 export const REDIS_OPTIONS = {
-  host: '138.2.76.195',
+  host: '34.143.138.230',
   port: 6379,
-  password: 'eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81',
+  password: '5sonline',
 };
 
 export const MONGODB_URI =
