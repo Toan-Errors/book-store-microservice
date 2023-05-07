@@ -12,61 +12,61 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-  # user-service:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/user-service/Dockerfile
-  #     target: development
-  #   command: npm run start:dev user-service
-  #   env_file:
-  #     - ./apps/user-service/.env
-  #   volumes:
-  #     - .:/usr/src/app
-  #     - /usr/src/app/node_modules
-  # book-service:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/book-service/Dockerfile
-  #     target: development
-  #   command: npm run start:dev book-service
-  #   env_file:
-  #     - ./apps/book-service/.env
-  #   volumes:
-  #     - .:/usr/src/app
-  #     - /usr/src/app/node_modules
-  # cart-service:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/cart-service/Dockerfile
-  #     target: development
-  #   command: npm run start:dev cart-service
-  #   env_file:
-  #     - ./apps/cart-service/.env
-  #   volumes:
-  #     - .:/usr/src/app
-  #     - /usr/src/app/node_modules
-  # rating-service:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/rating-service/Dockerfile
-  #     target: development
-  #   command: npm run start:dev rating-service
-  #   env_file:
-  #     - ./apps/rating-service/.env
-  #   volumes:
-  #     - .:/usr/src/app
-  #     - /usr/src/app/node_modules
-  # order-service:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/order-service/Dockerfile
-  #     target: development
-  #   command: npm run start:dev order-service
-  #   env_file:
-  #     - ./apps/order-service/.env
-  #   volumes:
-  #     - .:/usr/src/app
-  #     - /usr/src/app/node_modules
+  user-service:
+    build:
+      context: .
+      dockerfile: ./apps/user-service/Dockerfile
+      target: development
+    command: npm run start:dev user-service
+    env_file:
+      - ./apps/user-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  book-service:
+    build:
+      context: .
+      dockerfile: ./apps/book-service/Dockerfile
+      target: development
+    command: npm run start:dev book-service
+    env_file:
+      - ./apps/book-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  cart-service:
+    build:
+      context: .
+      dockerfile: ./apps/cart-service/Dockerfile
+      target: development
+    command: npm run start:dev cart-service
+    env_file:
+      - ./apps/cart-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  rating-service:
+    build:
+      context: .
+      dockerfile: ./apps/rating-service/Dockerfile
+      target: development
+    command: npm run start:dev rating-service
+    env_file:
+      - ./apps/rating-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  order-service:
+    build:
+      context: .
+      dockerfile: ./apps/order-service/Dockerfile
+      target: development
+    command: npm run start:dev order-service
+    env_file:
+      - ./apps/order-service/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
   # wishlist-service:
   #   build:
   #     context: .
